@@ -1,0 +1,106 @@
+:root {
+    --bg: rgb(27, 27, 27);
+    --secondary-bg: black;
+    --text: white;
+    --secondary-text: rgb(200, 200, 200);
+}
+.theme_light {
+    --bg: rgb(230, 230, 230);
+    --secondary-bg: white;
+    --text: black;
+    --secondary-text: rgb(200, 200, 200);
+}
+
+/* Universal */
+* {
+    image-rendering: pixelated;
+}
+body {
+    margin: 0;
+
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Georgia, Times, 'Times New Roman', serif;
+}
+h1, h2, h3, h4, h5, h6,
+p,
+figure {
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    padding: 8px 0;
+    font-size: 28pt;
+    line-height: 90%;
+    font-weight: bold;
+}
+
+/* Main */
+.container {
+    width: 100%;
+    max-width: 900px;
+    padding: 16px;
+
+    /* border: 1px solid white; */
+    margin: 0 auto;
+}
+
+/* Parts */
+.tab {
+    background-color: rgb(6, 112, 184);
+    color: white;
+    margin-bottom: 10px;
+
+    width: 120px;
+    margin: 0;
+    padding: 2px 8px;
+    border: none;
+
+    font-size: 12pt;
+    font-weight: bold;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+
+    cursor: pointer;
+}
+.tab:hover {
+    /* box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); */
+    filter: brightness(120%);
+}
+.tab.active_tab {
+    background-color: white;
+    color: black;
+    /* outline: 1px solid black; */
+}
+.tab_content {
+    visibility: hidden;
+    position: absolute;
+
+    padding: 12px 0;
+    display: flex;
+}
+.tab_content.active_tab {
+    visibility: visible;
+    position: unset;
+}
+
+.part {
+    background-color: var(--secondary-bg);
+    margin: 4px;
+    padding: 4px;
+
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.part:hover {
+    transform: translateY(-2px);
+}
+.part_img {
+    width: 64px;
+    height: 64px;
+}
+
+
+/* Canvas */
+canvas {
+    background-color: white;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Creator</title>
+    <link rel="stylesheet" href="index.css">
+
+    <!-- not-util -->
+    <script src="https://not-the.github.io/not-util/not-util.js" crossorigin></script>
+    <link rel="stylesheet" href="https://not-the.github.io/not-util/not-util.css" crossorigin>
+</head>
+<body class="">
+    <header class="container">
+        <h1>Crazy Carl's Carefully Constructed Carrot Clicker Character Creator</h1>
+    </header>
+    
+    <main class="container">
+        <!-- Preview -->
+        <figure>
+            <canvas id="canvas" height="320" width="320"></canvas>
+            <figcaption>320x320</figcaption>
+        </figure>
+
+        <!-- Parts -->
+        <div class="tab_container">
+            <button class="tab active_tab" id="tab_background" onclick="tab('background')">Background</button>
+            <button class="tab" id="tab_body" onclick="tab('body')">Body</button>
+            <button class="tab" id="tab_head" onclick="tab('head')">Head</button>
+            <!-- <button class="tab" id="tab_eyes" onclick="tab('eyes')">Eyes</button> -->
+            <button class="tab" id="tab_mouth" onclick="tab('mouth')">Mouth</button>
+            <button class="tab" id="tab_nose" onclick="tab('nose')">Nose</button>
+            <button class="tab" id="tab_headwear" onclick="tab('headwear')">Headwear</button>
+            <button class="tab" id="tab_extra" onclick="tab('extra')">Extra</button>
+        </div>
+        <div class="content_container">
+            <div class="tab_content active_tab" id="parts_background">Background</div>
+            <div class="tab_content" id="parts_body">Body</div>
+            <div class="tab_content" id="parts_head">Head</div>
+            <!-- <div class="tab_content" id="parts_eyes">Eyes</div> -->
+            <div class="tab_content" id="parts_mouth">Mouth</div>
+            <div class="tab_content" id="parts_nose">Nose</div>
+            <div class="tab_content" id="parts_headwear">Headwear</div>
+            <div class="tab_content" id="parts_extra">Extra</div>
+        </div>
+    </main>
+
+    <!-- JS -->
+    <script src="index.js"></script>
+</body>
+</html>
