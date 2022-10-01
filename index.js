@@ -44,7 +44,7 @@ var user = {
 }
 let keys = Object.keys(parts);
 
-/** Populate */
+/** Populate parts list(s) */
 function populate(type) {
     console.log(`Populating: ${type}`);
     let html = '';
@@ -53,7 +53,7 @@ function populate(type) {
         let name = list[i];
         html +=
         `
-        <figure class="part" id="part_${type}_${name}"  onclick="equip('${type}', ${i})">
+        <figure class="part" id="part_${type}_${name}" onclick="equip('${type}', ${i})">
             <img src="./assets/${type}/${name}.png" alt="${name}" class="part_img">
             <figcaption>${capitalizeFL(name)}</figcaption>
         </figure>
@@ -65,6 +65,7 @@ function populate(type) {
 /** Equip part */
 function equip(type, num) {
     console.log(type, num);
+    if(user[type] == num) return;
     user[type] = num;
     fullDraw();
 }
@@ -113,11 +114,11 @@ function tab(choice, state=true) {
 
 // On page load
 window.onload = () => {
-    console.log(keys.length);
-    // for(i = 0; i < keys.length; i++) {
-    //     try { populate(keys[i]); }
-    //     catch (error) { console.error(error); }
-    // }
+    console.log(keys.length || 1);
+    for(let i = 0; i < 7; i++) {
+        try { populate(keys[i]); }
+        catch (error) { console.error(error); }
+    }
 
     ctx = c.getContext("2d");
     fullDraw();
