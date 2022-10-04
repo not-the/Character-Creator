@@ -1,38 +1,50 @@
 :root {
     --bg: rgb(27, 27, 27);
     --secondary-bg: black;
+    --border-color: rgb(100, 100, 100);
+
     --text: white;
-    --secondary-text: rgb(200, 200, 200);
+    --alt-text: rgb(200, 200, 200);
 }
 .theme_light {
     --bg: rgb(230, 230, 230);
     --secondary-bg: white;
     --text: black;
-    --secondary-text: rgb(200, 200, 200);
+    --alt-text: rgb(200, 200, 200);
 }
 
 /* Universal */
 * {
     image-rendering: pixelated;
 }
+html { scrollbar-gutter: stable; }
 body {
     margin: 0;
 
     background-color: var(--bg);
     color: var(--text);
     font-family: Georgia, Times, 'Times New Roman', serif;
+
 }
 h1, h2, h3, h4, h5, h6,
-p,
-figure {
+p, figure {
     margin: 0;
     padding: 0;
 }
+h2.title_start {
+    margin-top: 20px;
+    color: var(--alt-text);
+}
 h1 {
     padding: 8px 0;
-    font-size: 28pt;
+    font-size: 32pt;
     line-height: 90%;
     font-weight: bold;
+}
+input[type="color"] {
+    width: 48px;
+    height: 48px;
+    border: none;
 }
 
 /* Main */
@@ -49,11 +61,11 @@ h1 {
 .tab {
     background-color: rgb(6, 112, 184);
     color: white;
-    margin-bottom: 10px;
+    /* margin-bottom: 12px; */
 
     width: 120px;
     margin: 0;
-    padding: 2px 8px;
+    padding: 4px 8px;
     border: none;
 
     font-size: 12pt;
@@ -71,12 +83,12 @@ h1 {
     color: black;
     /* outline: 1px solid black; */
 }
+.flex { display: flex; }
 .tab_content {
     visibility: hidden;
     position: absolute;
 
     padding: 12px 0;
-    display: flex;
 }
 .tab_content.active_tab {
     visibility: visible;
@@ -94,10 +106,25 @@ h1 {
 .part:hover {
     transform: translateY(-2px);
 }
-.part_img {
-    width: 64px;
-    height: 64px;
+.part.active {
+    background-color: white;
+    color: black;
 }
+.part_img {
+    width: 72px;
+    height: 72px;
+}
+
+.customize_item {
+    margin-top: 12px;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    /* justify-content: center; */
+    align-items: center;
+}
+.customize_item h4 { margin-right: 12px; }
 
 
 /* Canvas */
