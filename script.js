@@ -11,37 +11,42 @@ let images_loaded = false;
 // In order, back to front
 const parts = {
     background: [
+        'sky',
+        'cloudy',
+        'dusk',
+        'library',
+        'themery',
+        'carrot pile',
+        'classic',
         {
-            id: 'sky',
-            color_default: '#000000',
-            color_pixels: [],
+            id: 'custom sky',
+            color_default: '#888888',
+            color_pixels: [
+                [0, 0, 32, 32]
+            ],
+            color_mode: 'before',
         },
         {
-            id: 'cloudy',
-            color_default: '#000000',
-            color_pixels: [],
+            id: 'solid color',
+            color_default: '#888888',
+            color_pixels: [
+                [0, 0, 32, 32]
+            ],
         },
         {
-            id: 'dusk',
-            color_default: '#000000',
-            color_pixels: [],
+            id: 'textured color',
+            color_default: '#888888',
+            color_pixels: [
+                [0, 0, 32, 32]
+            ],
+            color_mode: 'before',
         },
-        {
-            id: 'library',
-            color_default: '#000000',
-            color_pixels: [],
-        },
-        // {
-        //     id: 'solid color',
-        //     color_default: '#888888',
-        //     color_pixels: [
-        //         [0, 0, 32, 32]
-        //     ],
-        // },
     ],
     midground: [
+        'none',
         'blacksmith',
         'shop',
+        'carrot pile',
     ],
     body: [
         {
@@ -78,11 +83,7 @@ const parts = {
                 [15, 27, 1, 1, '#000000', 0.12],
             ],
         },
-        {
-            id: 'carl',
-            color_default: '#000000',
-            color_pixels: [],
-        },
+        'carl',
     ],
     head: [
         'bill',
@@ -92,6 +93,7 @@ const parts = {
         'carl',
     ],
     eyes: [
+        'none',
         {
             id: 'bill',
             color_default: '#0db8ff',
@@ -126,6 +128,7 @@ const parts = {
         },
     ],
     mouth: [
+        'none',
         'bill',
         'belle',
         'greg',
@@ -133,6 +136,7 @@ const parts = {
         'carl',
     ],
     nose: [
+        'none',
         'nose 1', // bill belle greg
         'nose 2',
         'nose 3',
@@ -144,36 +148,63 @@ const parts = {
     ],
     headwear: [
         'none',
-        'bill',
+        {
+            id: 'bill',
+            color_default: '#ab3a47',
+            color_pixels: [
+                [ 8,  6, 16, 1],
+                [10,  6, 2, 1, '#ffffff', 0.25],
+                [14, 6, 1, 1, '#ffffff', 0.25],
+            ],
+        },
         'belle',
         'greg',
     ],
     accessory: [ // #44474c
+        'none',
         {
             id: 'sunglasses',
             color_default: '#3851bf',
             color_pixels: [
-                [14, 22, 1, 7],
-                [15, 22, 1, 8],
-                [15, 24, 1, 2, '#000000', 0.12],
-                [15, 27, 1, 1, '#000000', 0.12],
+                [ 9, 10, 5, 2],
+                [10, 12, 3, 1],
+                [11, 10, 2, 1, '#ffffff', 0.5],
+                [10, 11, 2, 1, '#ffffff', 0.5],
+                [10, 12, 1, 1, '#ffffff', 0.5],
+
+                [18, 10, 5, 2],
+                [19, 12, 3, 1],
+                [20, 10, 2, 1, '#ffffff', 0.5],
+                [19, 11, 2, 1, '#ffffff', 0.5],
+                [19, 12, 1, 1, '#ffffff', 0.5],
             ],
         },
         {
             id: 'scarf',
-            color_default: '#3851bf',
-            color_pixels: [],
+            // color_default: '#464646',
+            // color_pixels: [
+            //     [0, 2, 2, 2],
+            //     [ 8, 20, 4, 3],
+            //     [9, 21, 14, 3],
+            //     [ 20, 20, 4, 3],
+            // ],
         },
         {
             id: 'monocle',
-            color_default: '#3851bf',
-            color_pixels: [],
+            // color_default: '#3851bf',
+            // color_pixels: [],
         },
+    ],
+    foreground: [
+        'none',
+        'carrot pile',
+        'bill buddy',
     ],
 }
 const part_data = {
     background: {
-        // color: true,
+        color: true,
+        color_default: '#888888',
     },
     midground: {},
 
@@ -187,28 +218,39 @@ const part_data = {
     },
     mouth: {},
     nose: {},
-    headwear: {},
-    accessory: {},
+    headwear: {
+        color: true,
+    },
+    accessory: {
+        color: true,
+        allow_multiple: true,
+    },
+    foreground: {},
 }
 var user = {
     part: {
         background: 0,
-        midground:  undefined,
+        midground:  0,
 
         body:       0,
         head:       0,
-        eyes:       0,
-        mouth:      0,
-        nose:       0,
+        eyes:       1,
+        mouth:      1,
+        nose:       1,
         headwear:   1,
-        accessory:  undefined,
+        accessory:  0,
+        foreground: 0,
     },
-    color: {}
+    color: {
+        background: '#888888',
+    }
 }
 let keys = Object.keys(parts);
 
 /** Get image SRC */
-function getSRC(type, name) { return `./assets/${type}/${name}.png`}
+function getSRC(type, name) {
+    return name != 'none' ? `./assets/${type}/${name}.png` : './assets/none.png';
+}
 /** Get item filename */
 function itemID(item) { return typeof item == 'object' ? item.id : item; }
 
@@ -220,11 +262,14 @@ function populate(type) {
     for(i = 0; i < list.length; i++) {
         let item = list[i];
         let name = itemID(item);
+        let icons = `<img src="./assets/palette.svg" alt="Customizable" class="part_icon" title="Color customization">`;
+        if(item.color_default == undefined) icons = '';
         html +=
         `
-        <figure class="part part_${type}" id="part_${type}_${name}" onclick="equip('${type}', ${i})">
-            <img src="./assets/${type}/${name}.png" alt="${name}" class="part_img">
+        <figure class="part part_${type} ${user.part[type] == i ? 'active' : ''}" id="part_${type}_${name}" onclick="equip('${type}', ${i})">
+            <img src="${getSRC(type, name)}" alt="${name}" class="part_img">
             <figcaption>${capitalizeFL(name)}</figcaption>
+            ${icons}
         </figure>
         `;
     }
@@ -254,7 +299,8 @@ function equip(type, num) {
     if(user.part[type] == num) return;
     user.part[type] = num;
     document.querySelectorAll(`.part_${type}`).forEach(element => element.classList.remove('active'));
-    dom(`part_${type}_${parts[type][num]}`)?.classList.add('active');
+    console.log(`part_${type}_${itemID(parts[type][num])}`);
+    dom(`part_${type}_${itemID(parts[type][num])}`)?.classList.add('active');
     fullDraw();
 }
 
@@ -266,9 +312,6 @@ function fullDraw() {
         let item = parts[type][num];
         let name = itemID(item); // Get ID
         draw(type, name, num);
-        if(part_data[type].color) {
-            drawColor(type, user.part[type]);
-        }
     }
     images_loaded = true;
 }
@@ -286,11 +329,13 @@ function draw(type, name, num, offset) {
     var img = new Image();
     img.src = getSRC(type, name);
 
+    if(part_data[type].color && parts[type]?.[num]?.['color_mode'] == 'before') drawColor(type, user.part[type]); // Color before mode
+
     // Draw
     if(images_loaded) d();
     else img.onload = d;
 
-    if(part_data[type].color == true) drawColor(type, num);
+    if(part_data[type].color && parts[type]?.[num]?.['color_mode'] != 'before') drawColor(type, num); // Color
 
     function d() { ctx.drawImage(img, x, y, size, size); }
 }
@@ -298,7 +343,7 @@ function draw(type, name, num, offset) {
 function drawColor(type, num) {
     let pixels = parts[type][num].color_pixels;
     let color = user['color'][type];
-    if(color == undefined) return;
+    if(color == undefined || pixels == undefined) return;
 
     for(let i = 0; i < pixels.length; i++) {
         let pix = pixels[i];
@@ -328,14 +373,47 @@ function tab(choice, state=true) {
     current_tab = choice;
 }
 
+/** Export image */
+function exportImage() {
+    let image = canvas.toDataURL('image/png'); // Create image
 
+    let link = document.createElement("a");
+    link.setAttribute("href", image);
+    link.setAttribute("download", 'My character');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+}
+
+// Debug
+var region = {};
+/** Debug function */
+function canvasClick(event) {
+    var rect = canvas.getBoundingClientRect();
+    var y = Math.floor((event.clientX - rect.left) / times); //x position within the element.
+    var x = Math.floor((event.clientY - rect.top) / times);  //y position within the element.
+    console.log(x + ', ' + y);
+
+    // Start region
+    if(region.x1 == undefined) {
+        region.x1 = x;
+        region.y1 = y;
+    }
+    else {
+        region.x2 = x;
+        region.y2 = y;
+        console.log(`[${region.x1}, ${region.x2}, ${region.x2 - region.x1}, ${region.y2 - region.y1}],`);
+        for(var value in region) delete region[value];
+    }
+}
+
+// Keyboard shortcuts
 // Keyboard shortcuts
 document.addEventListener('keydown', event => {
     let key = Number(event.key);
     if(key == 0) key = 10;
     if(key != NaN) tab(keys[key - 1]);
-})
-
+});
 
 // On page load
 window.onload = () => {

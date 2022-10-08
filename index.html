@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Creator</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./style.css">
 
     <!-- not-util -->
     <script src="https://www.notkal.com/not-util/not-util.js" crossorigin></script>
@@ -13,16 +13,19 @@
 </head>
 <body class="">
     <header class="container">
-        <h2 class="title_start">Crazy Carl's Carefully Constructed Carrot Clicker</h2>
+        <h2 class="title_start">Crazy Carl's Carefully Constructed <a href="https://carrot.notkal.com/" id="carrot_clicker_link" target="_blank" rel="noopener noreferrer">Carrot Clicker</a></h2>
         <h1>Character Creator</h1>
     </header>
     
     <main class="container">
         <!-- Preview -->
         <figure>
-            <canvas id="canvas" height="320" width="320"></canvas>
+            <canvas id="canvas" height="320" width="320" onclick="canvasClick(event)"></canvas>
             <figcaption>320x320</figcaption>
         </figure>
+        <button onclick="exportImage()">Save Image</button>
+        <br/><br/>
+
 
         <!-- Parts -->
         <div class="tab_container">
@@ -35,6 +38,7 @@
             <button class="tab" id="tab_nose" onclick="tab('nose')">Nose</button>
             <button class="tab" id="tab_headwear" onclick="tab('headwear')">Headwear</button>
             <button class="tab" id="tab_accessory" onclick="tab('accessory')">Accessory</button>
+            <button class="tab" id="tab_foreground" onclick="tab('foreground')">Foreground</button>
         </div>
         <div class="content_container">
             <div class="tab_content active_tab" id="parts_background">Background</div>
@@ -46,10 +50,17 @@
             <div class="tab_content" id="parts_nose">Nose</div>
             <div class="tab_content" id="parts_headwear">Headwear</div>
             <div class="tab_content" id="parts_accessory">Accessory</div>
+            <div class="tab_content" id="parts_foreground">Foreground</div>
         </div>
     </main>
 
+    <footer id="footer" class="container">
+        <b>Image attribution:</b><br/>
+        Artwork by not-the<br/>
+        <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.dsvg" target="_blank" rel="noopener noreferrer">Palette icon</a> made by <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.svg" target="_blank" rel="noopener noreferrer">Scott de Jonge</a>, <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>, via Wikimedia Commons
+    </footer>
+
     <!-- JS -->
-    <script src="index.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>

@@ -1,0 +1,27 @@
+v2
+- Added a "none" option to the following part types: midground, eyes, mouth, nose, accesory
+- New "Foreground" part type
+- New parts:
+    Carrot Pile background, midground, and foregrounds
+    Themery background
+    Classic background
+    Custom Sky background
+    Solid Color Background
+    Textured Color background
+    Bill Buddy foreground
+- Gave more parts color customization
+    Bill headwear
+    Sunglasses accessory
+- "Before" custom color mode
+- Added a save image button
+- "Carrot Clicker" in the title is now a link
+- Parts with color options will now have an icon indicating that
+- Fixed the selected part not getting highlighted when clicked sometimes
+- Fixed the selected part not appearing as such on page load
+- Fixed parts not wrapping when larger than the container
+
+v1
+- Fixed an issue where the canvas would flicker when a part is equipped
+- Added a bunch of parts and seperated eyes, nose, mouth, and hat from the heads
+- Number keys let you change tabs
+- Misc CSS fixes
