@@ -283,7 +283,7 @@ function populate(type) {
     if(part_data[type].color == true) {
         container.innerHTML += `
         <div class="customize_item flex">
-            <h4>${capitalizeFL(type)} Color:</h4>
+            <b>${capitalizeFL(type)} Color:</b>
             <input type="color" name="${type}_color" id="${type}_color">
         </div>`;
         dom(`${type}_color`).addEventListener('input', event => {
@@ -365,7 +365,7 @@ function tab(choice, state=true) {
     store('character_creator_tab', choice);
 
     let button = dom(`tab_${choice}`);
-    let content = dom(`parts_${choice}`);
+    let content = dom(`content_${choice}`);
     style(button, 'active_tab', state);
     style(content, 'active_tab', state);
 

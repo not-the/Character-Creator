@@ -1,3 +1,6 @@
+v3
+- Complete CSS overhaul, now matches rest of the website
+
 v2
 - Added a "none" option to the following part types: midground, eyes, mouth, nose, accesory
 - New "Foreground" part type

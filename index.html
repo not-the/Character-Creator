@@ -4,63 +4,203 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character Creator</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>notkal - Character Creator</title>
+
+    <!-- Visual -->
+    <link rel="stylesheet" href="https://www.notkal.com//index.css">
+    <link rel="stylesheet" href="https://www.notkal.com//projects/project.css">
+    <meta name="theme-color" content="#171718"/>
+
+    <!-- Meta -->
+    <meta property="og:url" content="https://www.notkal.com/Character-Creator/">
+    <meta property="og:title" content="notkal - Character Creator">
+    <!-- <meta property="og:description" content="undefined"> -->
+    <!-- <meta property="og:image" content=""> -->
+    <!-- <meta name="twitter:image:alt" content="Alt text for image"> -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="notkal">
 
     <!-- not-util -->
-    <script src="https://www.notkal.com/not-util/not-util.js" crossorigin></script>
     <link rel="stylesheet" href="https://www.notkal.com/not-util/not-util.css" crossorigin>
+    <script src="https://www.notkal.com/not-util/not-util.js" crossorigin></script>
+
+    <!-- PROJECT -->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
-<body class="">
-    <header class="container">
-        <h2 class="title_start">Crazy Carl's Carefully Constructed <a href="https://carrot.notkal.com/" id="carrot_clicker_link" target="_blank" rel="noopener noreferrer">Carrot Clicker</a></h2>
-        <h1>Character Creator</h1>
+<body>
+    <!---------- Navigation ---------->
+    <nav id="nav" class="overlay_element flex nav_transparent">
+        <!-- Menu button -->
+        <div role="button" tabindex="0" id="menu_button" class="nav_button">
+            <img src="https://www.notkal.com/assets/icon/hamburger.svg" alt="Menu" id="menu_button_icon" class="icon button_icon">
+        </div>
+
+        <!-- Page name -->
+        <h1 class="nav_item page_title">notkal</h1>
+
+        <div class="flex" id="hamburger_menu">
+            <!-- Nav items -->
+            <div id="nav_list" class="flex">
+                <a href="https://www.notkal.com/" class="nav_item">Home</a>
+                <a href="https://www.notkal.com/#projects" class="nav_item">Projects</a>
+                <a href="https://www.notkal.com/#contact" class="nav_item">Contact</a>    
+            </div>
+            
+            <!-- Additional buttons -->
+            <div class="nav_item nav_right flex">
+                <a href="https://github.com/not-the" target="_blank" rel=”noreferrer” title="Github">
+                    <div class="nav_button">
+                        <img src="https://www.notkal.com/assets/icon/github.svg" alt="Github" class="icon button_icon">
+                    </div>
+                </a>
+                <div role="button" tabindex="0" id="theme_button" class="nav_button">
+                    <img src="https://www.notkal.com/assets/icon/moon.svg" alt="Change Theme" id="theme_button_icon" class="icon button_icon">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <!-- Banner image -->
+        <div id="banner" class="banner" style="background-image: url(/assets/banner/gradient_2.png)"></div>
+
+        <!-- Title -->
+        <div class="title_section container flex">
+            <div>
+                <h2 class="title_start">Crazy Carl's Carefully Constructed <a href="https://carrot.notkal.com/" id="carrot_clicker_link" target="_blank" rel="noopener noreferrer">Carrot Clicker</a></h2>
+                <h1>Character Creator</h1>
+                <p id="path" class="secondary_text gray">
+                    <a href="https://www.notkal.com/">notkal</a> / <a href="./">Character Creator</a>
+                </p>
+            </div>
+            <div class="title_buttons flex">
+                
+            </div>
+        </div>
     </header>
     
-    <main class="container">
-        <!-- Preview -->
-        <figure>
-            <canvas id="canvas" height="320" width="320" onclick="canvasClick(event)"></canvas>
-            <figcaption>320x320</figcaption>
-        </figure>
-        <button onclick="exportImage()">Save Image</button>
-        <br/><br/>
+
+    <!---------- Main ---------->
+    <main id="main" class="container">
+        <div class="cc_flexbox flex">
+            <!-- Preview -->
+            <div class="preview_pane">
+                <figure>
+                    <canvas id="canvas" height="320" width="320" onclick="canvasClick(event)"></canvas>
+                    <figcaption>320x320</figcaption>
+                </figure>
+                <button id="cc_save_image_button" onclick="exportImage()" class="button">
+                    <img src="./assets/download.svg" alt="" class="button_icon">
+                    <p>Save Image</p>
+                    <div class="button_shade"></div>
+                </button>
+            </div>
 
 
-        <!-- Parts -->
-        <div class="tab_container">
-            <button class="tab active_tab" id="tab_background" onclick="tab('background')">Background</button>
-            <button class="tab" id="tab_midground" onclick="tab('midground')">Midground</button>
-            <button class="tab" id="tab_body" onclick="tab('body')">Body</button>
-            <button class="tab" id="tab_head" onclick="tab('head')">Head</button>
-            <button class="tab" id="tab_eyes" onclick="tab('eyes')">Eyes</button>
-            <button class="tab" id="tab_mouth" onclick="tab('mouth')">Mouth</button>
-            <button class="tab" id="tab_nose" onclick="tab('nose')">Nose</button>
-            <button class="tab" id="tab_headwear" onclick="tab('headwear')">Headwear</button>
-            <button class="tab" id="tab_accessory" onclick="tab('accessory')">Accessory</button>
-            <button class="tab" id="tab_foreground" onclick="tab('foreground')">Foreground</button>
+
+            <!-- Parts -->
+            <div class="customize_pane">
+                <div class="tab_container flex">
+                    <button class="tab active_tab" id="tab_background" onclick="tab('background')">Background</button>
+                    <button class="tab" id="tab_body" onclick="tab('body')">Body</button>
+                    <button class="tab" id="tab_face" onclick="tab('face')">Face</button>
+                    <button class="tab" id="tab_extra" onclick="tab('extra')">Extra</button>
+                </div>
+                <div class="content_container">
+
+                    <div id="content_background" class="tab_content active_tab">
+                        <h4>Background</h4>
+                        <div id="parts_background">Background</div>
+                        <h4>Midground</h4>
+                        <div id="parts_midground">Midground</div>
+                    </div>
+
+                    <div id="content_body" class="tab_content">
+                        <h4>Head</h4>
+                        <div id="parts_head">Head</div>
+                        <h4>Body</h4>
+                        <div id="parts_body">Body</div>
+                    </div>
+
+                    <div id="content_face" class="tab_content">
+                        <h4>Eyes</h4>
+                        <div id="parts_eyes">Eyes</div>
+                        <h4>Nose</h4>
+                        <div id="parts_nose">Nose</div>
+                        <h4>Mouth</h4>
+                        <div id="parts_mouth">Mouth</div>
+                    </div>
+
+                    <div id="content_extra" class="tab_content">
+                        <h4>Headwear</h4>
+                        <div id="parts_headwear">Headwear</div>
+                        <h4>Accessory</h4>
+                        <div id="parts_accessory">Accessory</div>
+                        <h4>Foreground</h4>
+                        <div id="parts_foreground">Foreground</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="content_container">
-            <div class="tab_content active_tab" id="parts_background">Background</div>
-            <div class="tab_content" id="parts_midground">Midground</div>
-            <div class="tab_content" id="parts_body">Body</div>
-            <div class="tab_content" id="parts_head">Head</div>
-            <div class="tab_content" id="parts_eyes">Eyes</div>
-            <div class="tab_content" id="parts_mouth">Mouth</div>
-            <div class="tab_content" id="parts_nose">Nose</div>
-            <div class="tab_content" id="parts_headwear">Headwear</div>
-            <div class="tab_content" id="parts_accessory">Accessory</div>
-            <div class="tab_content" id="parts_foreground">Foreground</div>
-        </div>
+    
+        <footer id="character_creator_footer" class="container">
+            <b>Credits:</b><br/>
+            Artwork by not-the<br/>
+            <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.dsvg" target="_blank" rel="noopener noreferrer">Palette icon</a> made by <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.svg" target="_blank" rel="noopener noreferrer">Scott de Jonge</a>, <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>, via Wikimedia Commons
+            <div><a href="https://www.onlinewebfonts.com/icon/71049">Download Icon</a> from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a>, CC BY 3.0</div>
+        </footer>
     </main>
+    
 
-    <footer id="footer" class="container">
-        <b>Image attribution:</b><br/>
-        Artwork by not-the<br/>
-        <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.dsvg" target="_blank" rel="noopener noreferrer">Palette icon</a> made by <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.svg" target="_blank" rel="noopener noreferrer">Scott de Jonge</a>, <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>, via Wikimedia Commons
+    <!---------- Footer ---------->
+    <footer id="footer" class="flex">
+        <div class="container">
+            <div class="column">
+                <!-- Attribution -->
+                <p class="emphasize bold">Image attribution</p>
+                <p>
+                    <a href="https://www.pexels.com/video/changes-in-form-and-appearance-of-a-submerged-material-3163534/" target="_blank" rel="noreferrer">Header video</a> from <a href="https://www.pexels.com/">pexels.com</a>
+                </p>
+                <p>
+                    <a href="https://commons.wikimedia.org/wiki/File:Hamburger_icon.svg" target="_blank" rel="noreferrer">Hamburger icon</a> by Timothy Miller, Public domain, via Wikimedia Commons
+                </p>
+                <p>
+                    <a href="https://commons.wikimedia.org/wiki/File:Feather-weather-sun.svg" target="_blank" rel="noreferrer">Sun</a> and <a href="https://commons.wikimedia.org/wiki/File:Feather-weather-moon.svg" target="_blank" rel="noreferrer">Moon</a> icons by Cole Bemis, <a href="http://opensource.org/licenses/mit-license.php" target="_blank" rel="noreferrer">MIT</a>, via Wikimedia Commons
+                </p>
+                <p>
+                    <a href="https://commons.wikimedia.org/wiki/File:Aiga_mail_inverted_nobg.svg" target="_blank" rel="noreferrer">Envelope icon</a> by US DoT - AIGA, Public domain, via Wikimedia Commons
+                </p>
+                <p>
+                    <a href="https://commons.wikimedia.org/wiki/File:Antu_folder-cloud.svg" target="_blank" rel="noreferrer">Cloud Icon</a> by Fabián Alexis, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noreferrer">CC BY-SA 3.0</a>, via Wikimedia Commons
+                </p>
+                <p>
+                    <a href="https://commons.wikimedia.org/wiki/File:Echo_link-blue_icon_slanted.svg">Link Icon</a> from MGalloway (WMF), WMF User Experience Design group, <a href="http://opensource.org/licenses/mit-license.php">MIT</a>, via Wikimedia Commons
+                </p>
+                <br/>
+    
+                <!-- Copyright -->
+                <p class="emphasize">Ⓒ 2022 notkal.com</p>
+            </div>
+            <div class="column">
+                <a href="/#top" onclick="toTop()">Return to top</a>
+            </div>
+        </div>
     </footer>
 
+
+    <!---------- Overlays ---------->
+    <div id="backdrop"></div>
+
     <!-- JS -->
+    <script src="https://www.notkal.com/index.js"></script>
+
+    <!-- Project -->
     <script src="./script.js"></script>
 </body>
 </html>
