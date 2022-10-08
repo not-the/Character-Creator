@@ -77,11 +77,14 @@ const parts = {
             id: 'charles',
             color_default: '#3851bf',
             color_pixels: [
-                [14, 22, 1, 7],
-                [15, 22, 1, 8],
-                [15, 24, 1, 2, '#000000', 0.12],
-                [15, 27, 1, 1, '#000000', 0.12],
+                [14, 20, 1,  9],
+                [15, 20, 1, 10],
+                [14, 20, 1,  1, '#000000', 0.12],
+                [15, 20, 1,  2, '#000000', 0.12],
+                [15, 24, 1,  2, '#000000', 0.12],
+                [15, 27, 1,  1, '#000000', 0.12],
             ],
+            head_offset: {x:0, y:-2},
         },
         'carl',
     ],
@@ -89,8 +92,37 @@ const parts = {
         'bill',
         'belle',
         'greg',
+        {
+            id: 'charles',
+            headwear_offset: {x:0, y:3}
+        },
+        {
+            id: 'carl',
+            headwear_offset: {x:0, y:2}
+        },
+    ],
+    mouth: [
+        'none',
+        'bill',
+        'belle',
+        'greg',
         'charles',
         'carl',
+        'mouth 1',
+        'mouth 2',
+        'mouth 3',
+        'mouth 4',
+    ],
+    nose: [
+        'none',
+        'nose 1', // bill belle greg
+        'nose 2',
+        'nose 3',
+        'nose 4',
+        'nose 5',
+        'nose 6',
+        'nose 7',
+        'carl',   // carl
     ],
     eyes: [
         'none',
@@ -126,25 +158,14 @@ const parts = {
                 [18, 12],
             ],
         },
-    ],
-    mouth: [
-        'none',
-        'bill',
-        'belle',
-        'greg',
-        'charles',
-        'carl',
-    ],
-    nose: [
-        'none',
-        'nose 1', // bill belle greg
-        'nose 2',
-        'nose 3',
-        'nose 4',
-        'nose 5',
-        'nose 6',
-        'nose 7',
-        'carl',
+        {
+            id: 'carl',
+            color_default: '#e7a5fb',
+            color_pixels: [
+                [10, 13],
+                [19, 13],
+            ],
+        },
     ],
     headwear: [
         'none',
@@ -159,6 +180,8 @@ const parts = {
         },
         'belle',
         'greg',
+        'charles',
+        'carl',
     ],
     accessory: [ // #44474c
         'none',
@@ -215,14 +238,21 @@ const part_data = {
     eyes: {
         color: true,
         color_default: '#0db8ff',
+        position: true,
     },
-    mouth: {},
-    nose: {},
+    mouth: {
+        position: true,
+    },
+    nose: {
+        position: true,
+    },
     headwear: {
         color: true,
+        position: true,
     },
     accessory: {
         color: true,
+        position: true,
         allow_multiple: true,
     },
     foreground: {},
@@ -243,14 +273,25 @@ var user = {
     },
     color: {
         background: '#888888',
+    },
+    position: {
+        background: {x:0,y:0},
+        midground:  {x:0,y:0},
+
+        body:       {x:0,y:0},
+        head:       {x:0,y:0},
+        eyes:       {x:0,y:0},
+        mouth:      {x:0,y:0},
+        nose:       {x:0,y:0},
+        headwear:   {x:0,y:0},
+        accessory:  {x:0,y:0},
+        foreground: {x:0,y:0},
     }
 }
 let keys = Object.keys(parts);
 
 /** Get image SRC */
-function getSRC(type, name) {
-    return name != 'none' ? `./assets/${type}/${name}.png` : './assets/none.png';
-}
+function getSRC(type, name) { return name != 'none' ? `./assets/${type}/${name}.png` : './assets/none.png'; }
 /** Get item filename */
 function itemID(item) { return typeof item == 'object' ? item.id : item; }
 
@@ -262,7 +303,7 @@ function populate(type) {
     for(i = 0; i < list.length; i++) {
         let item = list[i];
         let name = itemID(item);
-        let icons = `<img src="./assets/palette.svg" alt="Customizable" class="part_icon" title="Color customization">`;
+        let icons = `<img src="./assets/palette.svg" alt="Customizable" class="part_icon" title="Color options available">`;
         if(item.color_default == undefined) icons = '';
         html +=
         `
@@ -285,12 +326,51 @@ function populate(type) {
         <div class="customize_item flex">
             <b>${capitalizeFL(type)} Color:</b>
             <input type="color" name="${type}_color" id="${type}_color">
+            <button class="cc_reset_button button" onclick="resetCustom(${type}, 'color')">
+                <p>Reset</p>
+                <div class="button_shade"></div>
+            </button>
         </div>`;
         dom(`${type}_color`).addEventListener('input', event => {
             user.color[type] = event.srcElement.value;
             fullDraw();
         });
     }
+    if(part_data[type].position == true) {
+        container.innerHTML += `
+        <div class="customize_item flex">
+        <b>${capitalizeFL(type)} Position:</b>
+        <div class="position_container">
+            <button class="${type}_position position_button pos_up no_styling" onclick="position('${type}', 'y', -1)">
+                <div></div>
+                <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
+            </button>
+            <button class="${type}_position position_button pos_left no_styling" onclick="position('${type}', 'x', -1)">
+                <div></div>
+                <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
+            </button>
+            <button class="${type}_position position_button pos_right no_styling" onclick="position('${type}', 'x', 1)">
+                <div></div>
+                <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
+            </button>
+            <button class="${type}_position position_button pos_down no_styling" onclick="position('${type}', 'y', 1)">
+                <div></div>
+                <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
+            </button>
+        </div>`;
+        dom(`${type}_color`).addEventListener('input', event => {
+            user.color[type] = event.srcElement.value;
+            fullDraw();
+        });
+    }
+}
+
+function resetCustom(type, option) {
+    console.log(type, option);
+    let target = user?.[option]?.[type];
+    if(target == undefined) return;
+    target = undefined;
+    dom(`${type}_${option}`).value = '#ff0000';
 }
 
 /** Equip part */
@@ -316,12 +396,44 @@ function fullDraw() {
     images_loaded = true;
 }
 
+/** Calculates a part's offset */
+function getOffset(type) {
+    let values = {x:0, y:0};
+    // Head offset by body
+    if(type == 'head' || type == 'eyes' || type == 'nose' || type == 'mouth' || type == 'headwear' || type == 'accessory') {
+        let head_off = parts['body'][user.part.body].head_offset;
+        if(head_off != undefined) {
+            values.x = head_off.x || 0;
+            values.y = head_off.y || 0;
+        }
+    }
+    // Headwear offset by head
+    if(type == 'headwear') {
+        let headwear_off = parts['head'][user.part.head].headwear_offset;
+        if(headwear_off != undefined) {
+            values.x = headwear_off.x || 0;
+            values.y = headwear_off.y || 0;
+        }
+    }
+    return values;
+}
+
 /** Draw */
 function draw(type, name, num, offset) {
     // console.log(`Drawing ${type}: ${name}`);
     if(type == undefined || name == undefined) return console.warn(`Invalid part type or name. Type: ${type} Name: ${name}`);
 
     let [x, y] = offset || [0, 0];
+
+    // User offset
+    x += user.position[type].x || 0;
+    y += user.position[type].y || 0;
+
+    // Part offset
+    let part_off = getOffset(type);
+    x += part_off.x;
+    y += part_off.y;
+
     x*=times;
     y*=times;
 
@@ -344,16 +456,33 @@ function drawColor(type, num) {
     let pixels = parts[type][num].color_pixels;
     let color = user['color'][type];
     if(color == undefined || pixels == undefined) return;
+    
+    // User offset
+    let off_x = user.position[type].x || 0;
+    let off_y = user.position[type].y || 0;
+
+    // Part offset
+    let part_off = getOffset(type);
+    off_x += part_off.x;
+    off_y += part_off.y;
 
     for(let i = 0; i < pixels.length; i++) {
         let pix = pixels[i];
         let [x, y, w, h, color_override, alpha] = pix;
-        console.log(pix);
+        x+=off_x;
+        y+=off_y;
         ctx.fillStyle = color_override || color || 'gray';
         ctx.globalAlpha = alpha || 1;
         ctx.fillRect(x*times, y*times, (w||1)*times, (h||1)*times);
         ctx.globalAlpha = 1;
     }
+}
+/** Position part */
+function position(type, axis, amount) {
+    let me = user.position[type];
+    me[axis] = (me[axis] || 0) + amount;
+    // console.log(me);
+    fullDraw();
 }
 
 // UI

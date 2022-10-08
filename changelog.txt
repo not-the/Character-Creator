@@ -1,3 +1,9 @@
+v4
+- Added positioning options for eyes, nose, mouth, and accessories
+- Fixed the width of the parts panel changing sometimes
+- No more floating heads, bodies of different heights will now move other elements to match
+- Added 4 new mouths
+
 v3
 - Complete CSS overhaul, now matches rest of the website
 
