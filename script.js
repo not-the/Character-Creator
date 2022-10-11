@@ -18,6 +18,12 @@ const parts = {
         'themery',
         'carrot pile',
         'classic',
+        'night alt',
+        'space',
+        'brick wall',
+        'brick wall blue',
+        'mushroom land',
+        'classic (snow)',
         {
             id: 'custom sky',
             color_default: '#888888',
@@ -47,6 +53,7 @@ const parts = {
         'blacksmith',
         'shop',
         'carrot pile',
+        'snow',
     ],
     body: [
         {
@@ -94,12 +101,23 @@ const parts = {
         'greg',
         {
             id: 'charles',
-            headwear_offset: {x:0, y:3}
+            headwear_offset: {x:0, y:3},
+            // filter: 'brightness(50%)',
         },
         {
             id: 'carl',
             headwear_offset: {x:0, y:2}
         },
+    ],
+    hair: [
+        'none',
+        'bill',
+        'bill messy',
+        'belle',
+        'greg',
+        'charles',
+        'carl',
+        'hair loss',
     ],
     mouth: [
         'none',
@@ -122,6 +140,8 @@ const parts = {
         'nose 5',
         'nose 6',
         'nose 7',
+        'nose 8',
+        'nose 9',
         'carl',   // carl
     ],
     eyes: [
@@ -167,7 +187,7 @@ const parts = {
             ],
         },
     ],
-    headwear: [
+    hats: [
         'none',
         {
             id: 'bill',
@@ -182,9 +202,24 @@ const parts = {
         'greg',
         'charles',
         'carl',
+        'biker helmet',
+        'hat stack',
     ],
     accessory: [ // #44474c
         'none',
+        {
+            id: 'glasses',
+            color_default: '#3851bf',
+            color_pixels: [
+                [ 9, 10, 1, 2],
+                [10, 12, 3, 1],
+                [13, 10, 1, 2],
+
+                [ 18, 10, 1, 2],
+                [19, 12, 3, 1],
+                [22, 10, 1, 2],
+            ],
+        },
         {
             id: 'sunglasses',
             color_default: '#3851bf',
@@ -217,6 +252,7 @@ const parts = {
             // color_default: '#3851bf',
             // color_pixels: [],
         },
+        'dollar necklace',
     ],
     foreground: [
         'none',
@@ -235,6 +271,10 @@ const part_data = {
         color: true,
     },
     head: {},
+    hair: {
+        // color: true,
+        position: true,
+    },
     eyes: {
         color: true,
         color_default: '#0db8ff',
@@ -246,7 +286,7 @@ const part_data = {
     nose: {
         position: true,
     },
-    headwear: {
+    hats: {
         color: true,
         position: true,
     },
@@ -264,10 +304,11 @@ var user = {
 
         body:       0,
         head:       0,
+        hair:       1,
         eyes:       1,
         mouth:      1,
         nose:       1,
-        headwear:   1,
+        hats:       1,
         accessory:  0,
         foreground: 0,
     },
@@ -280,10 +321,11 @@ var user = {
 
         body:       {x:0,y:0},
         head:       {x:0,y:0},
+        hair:       {x:0,y:0},
         eyes:       {x:0,y:0},
         mouth:      {x:0,y:0},
         nose:       {x:0,y:0},
-        headwear:   {x:0,y:0},
+        hats:       {x:0,y:0},
         accessory:  {x:0,y:0},
         foreground: {x:0,y:0},
     }
@@ -326,10 +368,7 @@ function populate(type) {
         <div class="customize_item flex">
             <b>${capitalizeFL(type)} Color:</b>
             <input type="color" name="${type}_color" id="${type}_color">
-            <button class="cc_reset_button button" onclick="resetCustom(${type}, 'color')">
-                <p>Reset</p>
-                <div class="button_shade"></div>
-            </button>
+            ${resetButtonHTML(type, 'color')}
         </div>`;
         dom(`${type}_color`).addEventListener('input', event => {
             user.color[type] = event.srcElement.value;
@@ -339,24 +378,26 @@ function populate(type) {
     if(part_data[type].position == true) {
         container.innerHTML += `
         <div class="customize_item flex">
-        <b>${capitalizeFL(type)} Position:</b>
-        <div class="position_container">
-            <button class="${type}_position position_button pos_up no_styling" onclick="position('${type}', 'y', -1)">
-                <div></div>
-                <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
-            </button>
-            <button class="${type}_position position_button pos_left no_styling" onclick="position('${type}', 'x', -1)">
-                <div></div>
-                <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
-            </button>
-            <button class="${type}_position position_button pos_right no_styling" onclick="position('${type}', 'x', 1)">
-                <div></div>
-                <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
-            </button>
-            <button class="${type}_position position_button pos_down no_styling" onclick="position('${type}', 'y', 1)">
-                <div></div>
-                <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
-            </button>
+            <b>${capitalizeFL(type)} Position:</b>
+            <div class="position_container">
+                <button class="${type}_position position_button pos_up no_styling" onclick="position('${type}', 'y', -1)">
+                    <div></div>
+                    <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
+                </button>
+                <button class="${type}_position position_button pos_left no_styling" onclick="position('${type}', 'x', -1)">
+                    <div></div>
+                    <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
+                </button>
+                <button class="${type}_position position_button pos_right no_styling" onclick="position('${type}', 'x', 1)">
+                    <div></div>
+                    <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
+                </button>
+                <button class="${type}_position position_button pos_down no_styling" onclick="position('${type}', 'y', 1)">
+                    <div></div>
+                    <svg height="12" width="20"><polygon points="10,0 20,12 0,12"/></svg>
+                </button>
+            </div>
+            ${resetButtonHTML(type, 'position')}
         </div>`;
         dom(`${type}_color`).addEventListener('input', event => {
             user.color[type] = event.srcElement.value;
@@ -365,12 +406,19 @@ function populate(type) {
     }
 }
 
-function resetCustom(type, option) {
-    console.log(type, option);
-    let target = user?.[option]?.[type];
-    if(target == undefined) return;
-    target = undefined;
-    dom(`${type}_${option}`).value = '#ff0000';
+function resetButtonHTML(type, option_name='color') {
+    return `
+    <button class="cc_reset_button button" onclick="resetCustom('${type}', '${option_name}')">
+        <p>Reset</p>
+        <div class="button_shade"></div>
+    </button>`;
+}
+
+function resetCustom(type, option='color') {
+    let to = option == 'position' ? {x:0,y:0} : undefined;
+    user[option][type] = to;
+    if(option == 'color') dom(`${type}_${option}`).value = '#000000';
+    fullDraw();
 }
 
 /** Equip part */
@@ -400,7 +448,7 @@ function fullDraw() {
 function getOffset(type) {
     let values = {x:0, y:0};
     // Head offset by body
-    if(type == 'head' || type == 'eyes' || type == 'nose' || type == 'mouth' || type == 'headwear' || type == 'accessory') {
+    if(type == 'head' || type == 'eyes' || type == 'nose' || type == 'mouth' || type == 'hats' || type == 'hair' || type == 'accessory') {
         let head_off = parts['body'][user.part.body].head_offset;
         if(head_off != undefined) {
             values.x = head_off.x || 0;
@@ -408,7 +456,7 @@ function getOffset(type) {
         }
     }
     // Headwear offset by head
-    if(type == 'headwear') {
+    if(type == 'hats' || type == 'hair') {
         let headwear_off = parts['head'][user.part.head].headwear_offset;
         if(headwear_off != undefined) {
             values.x = headwear_off.x || 0;
@@ -440,6 +488,8 @@ function draw(type, name, num, offset) {
     // Get image
     var img = new Image();
     img.src = getSRC(type, name);
+
+    ctx.filter = parts[type][num].filter || 'none';
 
     if(part_data[type].color && parts[type]?.[num]?.['color_mode'] == 'before') drawColor(type, user.part[type]); // Color before mode
 

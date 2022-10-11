@@ -1,3 +1,17 @@
+v5
+- Hats and hair are now separate
+- Added a View on Github button
+- Fixed rapid taps on position buttons zooming the page on mobile
+- Reset buttons on color pickers now works
+- Resetting positioning is now an option
+- New parts:
+    6 new backgrounds: Night alt, Space, Brick wall, Brick wall blue, Mushroom land, Classic (snow)
+    1 new miground: Snow
+    7 new hair types: Bill, Bill messy, Belle, Greg, Charles, Carl, Hair loss
+    2 new noses: Nose 8, Nose 9
+    1 new hat: Hat stack
+    2 new accessories: Glasses, Dollar necklace
+
 v4
 - Added positioning options for eyes, nose, mouth, and accessories
 - Fixed the width of the parts panel changing sometimes

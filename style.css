@@ -6,12 +6,21 @@
 header {
     margin-top: -36px;
 }
-button * {
+button *,
+.button * {
     display: inline-block;
+    vertical-align: middle;
+}
+button:not(.small_button) img,
+.button:not(.small_button) img {
+    margin-right: 3px;
 }
 main figure img { cursor: unset; }
+main button {
+    touch-action: manipulation;
+}
 
-.container { max-width: 920px; }
+.container { max-width: 940px; }
 
 /* Universal */
 main * { image-rendering: pixelated; }
@@ -59,8 +68,8 @@ main #cc_save_image_button {
     margin-top: 6px;
     margin-bottom: 12px;
 }
-main #cc_save_image_button img {
-    margin-right: 3px;
+main .cc_reset_button {
+    margin-left: auto;
 }
 
 main .content_container {
