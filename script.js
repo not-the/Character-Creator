@@ -1,302 +1,16 @@
+// Page
+const select_preset = dom('select_preset');
+
 // Canvas
-var c = dom('canvas');
-var ctx;
-var src_size = 32;
-var size = c.width;
+var c = dom('canvas'); // Canvas element
+var ctx; // Contextualized canvas
+var src_size = 32; // Size of the assets
+var size = c.width; // Size of the canvas
 var times = size / src_size; // Canvas is 16x larger than assets
 
 let images_loaded = false;
 
-// Data
-// In order, back to front
-const parts = {
-    background: [
-        'sky',
-        'cloudy',
-        'dusk',
-        'library',
-        'themery',
-        'carrot pile',
-        'classic',
-        'night alt',
-        'space',
-        'brick wall',
-        'brick wall blue',
-        'mushroom land',
-        'classic (snow)',
-        {
-            id: 'custom sky',
-            color_default: '#888888',
-            color_pixels: [
-                [0, 0, 32, 32]
-            ],
-            color_mode: 'before',
-        },
-        {
-            id: 'solid color',
-            color_default: '#888888',
-            color_pixels: [
-                [0, 0, 32, 32]
-            ],
-        },
-        {
-            id: 'textured color',
-            color_default: '#888888',
-            color_pixels: [
-                [0, 0, 32, 32]
-            ],
-            color_mode: 'before',
-        },
-    ],
-    midground: [
-        'none',
-        'blacksmith',
-        'shop',
-        'carrot pile',
-        'snow',
-    ],
-    body: [
-        {
-            id: 'bill',
-            color_default: '#3851bf',
-            color_pixels: [
-                [9, 22, 1, 10],
-                [22, 22, 1, 10],
-            ],
-        },
-        {
-            id: 'belle',
-            color_default: '#3851bf',
-            color_pixels: [
-                [9, 22, 1, 10],
-                [22, 22, 1, 10],
-            ],
-        },
-        {
-            id: 'greg',
-            color_default: '#3851bf',
-            color_pixels: [
-                [10, 22, 1, 10],
-                [20, 22, 1, 10],
-            ],
-        },
-        {
-            id: 'charles',
-            color_default: '#3851bf',
-            color_pixels: [
-                [14, 20, 1,  9],
-                [15, 20, 1, 10],
-                [14, 20, 1,  1, '#000000', 0.12],
-                [15, 20, 1,  2, '#000000', 0.12],
-                [15, 24, 1,  2, '#000000', 0.12],
-                [15, 27, 1,  1, '#000000', 0.12],
-            ],
-            head_offset: {x:0, y:-2},
-        },
-        'carl',
-    ],
-    head: [
-        'bill',
-        'belle',
-        'greg',
-        {
-            id: 'charles',
-            headwear_offset: {x:0, y:3},
-            // filter: 'brightness(50%)',
-        },
-        {
-            id: 'carl',
-            headwear_offset: {x:0, y:2}
-        },
-    ],
-    hair: [
-        'none',
-        'bill',
-        'bill messy',
-        'belle',
-        'greg',
-        'charles',
-        'carl',
-        'hair loss',
-    ],
-    mouth: [
-        'none',
-        'bill',
-        'belle',
-        'greg',
-        'charles',
-        'carl',
-        'mouth 1',
-        'mouth 2',
-        'mouth 3',
-        'mouth 4',
-    ],
-    nose: [
-        'none',
-        'nose 1', // bill belle greg
-        'nose 2',
-        'nose 3',
-        'nose 4',
-        'nose 5',
-        'nose 6',
-        'nose 7',
-        'nose 8',
-        'nose 9',
-        'carl',   // carl
-    ],
-    eyes: [
-        'none',
-        {
-            id: 'bill',
-            color_default: '#0db8ff',
-            color_pixels: [
-                [11, 10],
-                [20, 10],
-            ],
-        },
-        {
-            id: 'belle',
-            color_default: '#88e543',
-            color_pixels: [
-                [11, 10],
-                [20, 10],
-            ],
-        },
-        {
-            id: 'greg',
-            color_default: '#ab5309',
-            color_pixels: [
-                [11, 10],
-                [21, 10],
-            ],
-        },
-        {
-            id: 'charles',
-            color_default: '#e7a5fb',
-            color_pixels: [
-                [12, 12],
-                [18, 12],
-            ],
-        },
-        {
-            id: 'carl',
-            color_default: '#e7a5fb',
-            color_pixels: [
-                [10, 13],
-                [19, 13],
-            ],
-        },
-    ],
-    hats: [
-        'none',
-        {
-            id: 'bill',
-            color_default: '#ab3a47',
-            color_pixels: [
-                [ 8,  6, 16, 1],
-                [10,  6, 2, 1, '#ffffff', 0.25],
-                [14, 6, 1, 1, '#ffffff', 0.25],
-            ],
-        },
-        'belle',
-        'greg',
-        'charles',
-        'carl',
-        'biker helmet',
-        'hat stack',
-    ],
-    accessory: [ // #44474c
-        'none',
-        {
-            id: 'glasses',
-            color_default: '#3851bf',
-            color_pixels: [
-                [ 9, 10, 1, 2],
-                [10, 12, 3, 1],
-                [13, 10, 1, 2],
-
-                [ 18, 10, 1, 2],
-                [19, 12, 3, 1],
-                [22, 10, 1, 2],
-            ],
-        },
-        {
-            id: 'sunglasses',
-            color_default: '#3851bf',
-            color_pixels: [
-                [ 9, 10, 5, 2],
-                [10, 12, 3, 1],
-                [11, 10, 2, 1, '#ffffff', 0.5],
-                [10, 11, 2, 1, '#ffffff', 0.5],
-                [10, 12, 1, 1, '#ffffff', 0.5],
-
-                [18, 10, 5, 2],
-                [19, 12, 3, 1],
-                [20, 10, 2, 1, '#ffffff', 0.5],
-                [19, 11, 2, 1, '#ffffff', 0.5],
-                [19, 12, 1, 1, '#ffffff', 0.5],
-            ],
-        },
-        {
-            id: 'scarf',
-            // color_default: '#464646',
-            // color_pixels: [
-            //     [0, 2, 2, 2],
-            //     [ 8, 20, 4, 3],
-            //     [9, 21, 14, 3],
-            //     [ 20, 20, 4, 3],
-            // ],
-        },
-        {
-            id: 'monocle',
-            // color_default: '#3851bf',
-            // color_pixels: [],
-        },
-        'dollar necklace',
-    ],
-    foreground: [
-        'none',
-        'carrot pile',
-        'bill buddy',
-    ],
-}
-const part_data = {
-    background: {
-        color: true,
-        color_default: '#888888',
-    },
-    midground: {},
-
-    body: {
-        color: true,
-    },
-    head: {},
-    hair: {
-        // color: true,
-        position: true,
-    },
-    eyes: {
-        color: true,
-        color_default: '#0db8ff',
-        position: true,
-    },
-    mouth: {
-        position: true,
-    },
-    nose: {
-        position: true,
-    },
-    hats: {
-        color: true,
-        position: true,
-    },
-    accessory: {
-        color: true,
-        position: true,
-        allow_multiple: true,
-    },
-    foreground: {},
-}
+// User configuration
 var user = {
     part: {
         background: 0,
@@ -328,7 +42,8 @@ var user = {
         hats:       {x:0,y:0},
         accessory:  {x:0,y:0},
         foreground: {x:0,y:0},
-    }
+    },
+    last_edited: false,
 }
 let keys = Object.keys(parts);
 
@@ -404,16 +119,20 @@ function populate(type) {
             fullDraw();
         });
     }
+
+    /** Reset button template */
+    function resetButtonHTML(type, option_name='color') {
+        return `
+        <button class="cc_reset_button button" onclick="resetCustom('${type}', '${option_name}')">
+            <p>Reset</p>
+            <div class="button_shade"></div>
+        </button>`;
+    }
 }
 
-function resetButtonHTML(type, option_name='color') {
-    return `
-    <button class="cc_reset_button button" onclick="resetCustom('${type}', '${option_name}')">
-        <p>Reset</p>
-        <div class="button_shade"></div>
-    </button>`;
-}
 
+
+/** Resets color/position options */
 function resetCustom(type, option='color') {
     let to = option == 'position' ? {x:0,y:0} : undefined;
     user[option][type] = to;
@@ -433,7 +152,7 @@ function equip(type, num) {
 }
 
 /** Draw all selected */
-function fullDraw() {
+function fullDraw(custom_preset=false) {
     for(i = 0; i < keys.length; i++) {
         let type = keys[i];
         let num = user.part[type];
@@ -442,6 +161,7 @@ function fullDraw() {
         draw(type, name, num);
     }
     images_loaded = true;
+    if(!custom_preset) select_preset.value = 'custom';
 }
 
 /** Calculates a part's offset */
@@ -451,16 +171,16 @@ function getOffset(type) {
     if(type == 'head' || type == 'eyes' || type == 'nose' || type == 'mouth' || type == 'hats' || type == 'hair' || type == 'accessory') {
         let head_off = parts['body'][user.part.body].head_offset;
         if(head_off != undefined) {
-            values.x = head_off.x || 0;
-            values.y = head_off.y || 0;
+            values.x += head_off.x || 0;
+            values.y += head_off.y || 0;
         }
     }
     // Headwear offset by head
     if(type == 'hats' || type == 'hair') {
         let headwear_off = parts['head'][user.part.head].headwear_offset;
         if(headwear_off != undefined) {
-            values.x = headwear_off.x || 0;
-            values.y = headwear_off.y || 0;
+            values.x += headwear_off.x || 0;
+            values.y += headwear_off.y || 0;
         }
     }
     return values;
@@ -501,7 +221,11 @@ function draw(type, name, num, offset) {
 
     function d() { ctx.drawImage(img, x, y, size, size); }
 }
-/** Draw rectangle */
+/** Draw rectangle
+ * @param {string} type Part type
+ * @param {number} num Part ID
+ * @returns 
+ */
 function drawColor(type, num) {
     let pixels = parts[type][num].color_pixels;
     let color = user['color'][type];
@@ -527,11 +251,18 @@ function drawColor(type, num) {
         ctx.globalAlpha = 1;
     }
 }
-/** Position part */
+/** Position part
+ * @param {string} type Part type
+ * @param {string} axis Axis, either X or Y
+ * @param {number} amount Change in position
+ */
 function position(type, axis, amount) {
+    type = type || user.last_edited;
+    user.last_edited = type;
+
     let me = user.position[type];
     me[axis] = (me[axis] || 0) + amount;
-    // console.log(me);
+    user.last_edited = type;
     fullDraw();
 }
 
@@ -564,6 +295,28 @@ function exportImage() {
     link.remove();
 }
 
+/** Randomize character */
+function randomize() {
+    for(let i = 0; i < keys.length; i++) {
+        let type = keys[i];
+        let list = parts[type];
+        let random = Math.ceil(Math.random() * (list.length-1));
+        user.part[type] = random;
+    }
+    fullDraw();
+}
+
+/** Set preset */
+function setPreset(preset) {
+    // if(!window.confirm("Your character will be lost. Continue?")) {
+    //     select_preset.value = 'custom';
+    //     return;
+    // };
+
+    user.part = JSON.parse(JSON.stringify(presets[preset]));
+    fullDraw(true);
+}
+
 // Debug
 var region = {};
 /** Debug function */
@@ -589,10 +342,35 @@ function canvasClick(event) {
 // Keyboard shortcuts
 // Keyboard shortcuts
 document.addEventListener('keydown', event => {
-    let key = Number(event.key);
-    if(key == 0) key = 10;
-    if(key != NaN) tab(keys[key - 1]);
+    let key = event.key;
+
+    // Arrow key positioning
+    if(
+        key == 'ArrowUp' || key == 'ArrowRight' || key == 'ArrowDown' || key == 'ArrowLeft'
+        && document.activeElement != 'select' && user.last_edited != false
+    ) {
+        event.preventDefault();
+        try {
+            if(key == 'ArrowUp') position(undefined, 'y', -1);
+            else if(key == 'ArrowRight') position(undefined, 'x', 1);
+            else if(key == 'ArrowDown') position(undefined, 'y', 1);
+            else if(key == 'ArrowLeft') position(undefined, 'x', -1);
+        } catch (error) {
+            console.log('[Character Creator] No element selected')
+        }
+    }
+
+
+    // let key = Number(event.key);
+    // if(key == 0) key = 10;
+    // if(key != NaN) tab(keys[key - 1]);
 });
+
+// Select preset
+select_preset.addEventListener('input', event => {
+    let value = select_preset.value;
+    setPreset(value);
+})
 
 // On page load
 window.onload = () => {

@@ -1,3 +1,15 @@
+v6
+- Arrow keys will now reposition the last element you edited
+- Randomize button
+- Preset dropdown
+- Added Jared parts
+- Added JJCVIP to the credits
+- Fixed hat/hair offset not being calculated properly
+- New parts:
+    Body: Suit, Jokester, Black shirt
+    Hats: Charles XL, Top Hat
+    Accessories: Bow tie
+
 v5
 - Hats and hair are now separate
 - Added a View on Github button

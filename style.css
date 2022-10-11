@@ -72,14 +72,6 @@ main .cc_reset_button {
     margin-left: auto;
 }
 
-main .content_container {
-    max-height: 600px;
-    overflow: auto;
-    /* border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    border-radius: 6px;*/
-}
-
 /* Parts */
 main .tab {
     background-color: rgb(6, 112, 184);
@@ -108,6 +100,10 @@ main .tab_content {
     visibility: hidden;
     position: absolute;
 
+    height: 600px;
+    max-height: 80vh;
+    overflow: auto;
+
     padding: 12px 0;
 }
 main .tab_content.active_tab {
@@ -131,10 +127,12 @@ main .part {
 }
 main .part:hover {
     transform: translateY(-2px);
+    background-color: var(--border-color);
+    transition: 0.1s background-color ease;
 }
 main .part.active {
-    background-color: white;
-    color: black;
+    background-color: var(--text);
+    color: var(--lighter-bg);
 }
 main .part_img {
     width: 72px;

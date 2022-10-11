@@ -107,6 +107,23 @@
                     <p>Save Image</p>
                     <div class="button_shade"></div>
                 </button>
+                <h4 style="margin-bottom: 6px;">Options</h4>
+                <div class="flex">
+                    <button onclick="randomize()" class="button">
+                        <p>Randomize</p>
+                        <div class="button_shade"></div>
+                    </button>
+                    <select name="select_preset" id="select_preset" style="flex: 2; text-align: left; margin-left: 6px;">
+                        <option value="custom" selected disabled>Choose a preset</option>
+                        <option value="Bill">Bill</option>
+                        <option value="Belle">Belle</option>
+                        <option value="Greg">Greg</option>
+                        <option value="Charles">Charles</option>
+                        <option value="Carl">Carl</option>
+                        <option value="Jared">Jared</option>
+                    </select>
+                </div>
+
             </div>
 
 
@@ -160,7 +177,8 @@
     
         <footer id="character_creator_footer" class="container">
             <b>Credits:</b><br/>
-            Artwork by not-the<br/>
+            Artwork by <a href="https://www.notkal.com/">not-the</a><br/>
+            Original character designs by <a href="https://github.com/JJCVIP">JJCVIP</a><br/>
             <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.dsvg" target="_blank" rel="noopener noreferrer">Palette icon</a> made by <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.svg" target="_blank" rel="noopener noreferrer">Scott de Jonge</a>, <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>, via Wikimedia Commons
             <div><a href="https://www.onlinewebfonts.com/icon/71049">Download Icon</a> from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a>, CC BY 3.0</div>
         </footer>
@@ -210,6 +228,7 @@
     <script src="https://www.notkal.com/index.js"></script>
 
     <!-- Project -->
+    <script src="./data.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
