@@ -1,3 +1,7 @@
+v8
+- Reduced the odds of getting a foreground when clicking the randomize button
+- Gave the tabs a button hover effect
+
 v7
 - Removed redundant CSS
 - Hats is no longer plural

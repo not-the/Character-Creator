@@ -301,6 +301,7 @@ function randomize() {
         let type = keys[i];
         let list = parts[type];
         let random = Math.ceil(Math.random() * (list.length-1));
+        if(type == 'foreground' && Math.ceil(Math.random() * 100) <= 80) random = 0;
         user.part[type] = random;
     }
     fullDraw();

@@ -66,26 +66,18 @@ main .cc_reset_button {
 
 /* Parts */
 main .tab {
-    background-color: rgb(6, 112, 184);
-    border-radius: 3px;
-
-    /* width: 120px; */
+    background-color: rgb(51, 146, 255);
     width: 100%;
     margin: 0;
     padding: 4px 8px;
+    border-radius: 3px;
 
     font-weight: bold;
 }
 main .tab:not(main .tab:first-of-type) { margin-left: 4px; }
-main .tab:hover {
-    /* box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); */
-    filter: brightness(130%) contrast(80%);
-    color: white;
-}
 main .tab.active_tab {
     background-color: white;
     color: black;
-    /* outline: 1px solid black; */
     cursor: unset;
 }
 main .tab_content {
