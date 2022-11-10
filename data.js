@@ -217,7 +217,7 @@ const parts = {
             ],
         },
     ],
-    hats: [
+    hat: [
         'none',
         {
             id: 'bill',
@@ -340,7 +340,7 @@ const part_data = {
     nose: {
         position: true,
     },
-    hats: {
+    hat: {
         color: true,
         position: true,
     },
@@ -367,7 +367,7 @@ const presets = {
         eyes:       1,
         mouth:      1,
         nose:       1,
-        hats:       1,
+        hat:        1,
         accessory:  0,
         foreground: 0,
     },
@@ -381,7 +381,7 @@ const presets = {
         eyes:       2,
         mouth:      2,
         nose:       1,
-        hats:       2,
+        hat:        2,
         accessory:  0,
         foreground: 0,
     },
@@ -395,7 +395,7 @@ const presets = {
         eyes:       3,
         mouth:      3,
         nose:       1,
-        hats:       3,
+        hat:        3,
         accessory:  0,
         foreground: 0,
     },
@@ -409,7 +409,7 @@ const presets = {
         eyes:       4,
         mouth:      4,
         nose:       2,
-        hats:       4,
+        hat:        4,
         accessory:  0,
         foreground: 0,
     },
@@ -423,7 +423,7 @@ const presets = {
         eyes:       5,
         mouth:      5,
         nose:      10,
-        hats:       6,
+        hat:        6,
         accessory:  0,
         foreground: 0,
     },
@@ -437,7 +437,7 @@ const presets = {
         eyes:       6,
         mouth:      6,
         nose:      11,
-        hats:       7,
+        hat:        7,
         accessory:  1,
         foreground: 0,
     }

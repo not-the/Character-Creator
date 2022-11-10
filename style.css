@@ -3,22 +3,14 @@
 } */
 
 /* temporary */
-header {
-    margin-top: -36px;
-}
-button *,
-.button * {
-    display: inline-block;
-    vertical-align: middle;
-}
 button:not(.small_button) img,
 .button:not(.small_button) img {
     margin-right: 3px;
 }
+
+header { margin-top: -36px; }
 main figure img { cursor: unset; }
-main button {
-    touch-action: manipulation;
-}
+main button { touch-action: manipulation; }
 
 .container { max-width: 940px; }
 

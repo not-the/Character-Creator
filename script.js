@@ -22,7 +22,7 @@ var user = {
         eyes:       1,
         mouth:      1,
         nose:       1,
-        hats:       1,
+        hat:        1,
         accessory:  0,
         foreground: 0,
     },
@@ -39,7 +39,7 @@ var user = {
         eyes:       {x:0,y:0},
         mouth:      {x:0,y:0},
         nose:       {x:0,y:0},
-        hats:       {x:0,y:0},
+        hat:        {x:0,y:0},
         accessory:  {x:0,y:0},
         foreground: {x:0,y:0},
     },
@@ -168,7 +168,7 @@ function fullDraw(custom_preset=false) {
 function getOffset(type) {
     let values = {x:0, y:0};
     // Head offset by body
-    if(type == 'head' || type == 'eyes' || type == 'nose' || type == 'mouth' || type == 'hats' || type == 'hair' || type == 'accessory') {
+    if(type == 'head' || type == 'eyes' || type == 'nose' || type == 'mouth' || type == 'hat' || type == 'hair' || type == 'accessory') {
         let head_off = parts['body'][user.part.body].head_offset;
         if(head_off != undefined) {
             values.x += head_off.x || 0;
@@ -176,7 +176,7 @@ function getOffset(type) {
         }
     }
     // Headwear offset by head
-    if(type == 'hats' || type == 'hair') {
+    if(type == 'hat' || type == 'hair') {
         let headwear_off = parts['head'][user.part.head].headwear_offset;
         if(headwear_off != undefined) {
             values.x += headwear_off.x || 0;

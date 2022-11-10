@@ -1,3 +1,7 @@
+v7
+- Removed redundant CSS
+- Hats is no longer plural
+
 v6
 - Arrow keys will now reposition the last element you edited
 - Randomize button
