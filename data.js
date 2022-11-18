@@ -14,6 +14,7 @@ const parts = {
         'brick wall blue',
         'mushroom land',
         'classic (snow)',
+        'cloudless',
         {
             id: 'custom sky',
             color_default: '#888888',
@@ -97,6 +98,11 @@ const parts = {
         'jokester',
         'black shirt',
         'leather jacket',
+        'ugly sweater',
+        'blue suit',
+        'high vis',
+        'chef',
+        'sweater',
     ],
     head: [
         'bill',
@@ -139,6 +145,7 @@ const parts = {
                 [24, 9, 2,  1],
             ],
         },
+        'belle (white)',
     ],
     mouth: [
         'none',
@@ -197,8 +204,8 @@ const parts = {
             id: 'charles',
             color_default: '#e7a5fb',
             color_pixels: [
-                [12, 12],
-                [18, 12],
+                [12, 14],
+                [18, 14],
             ],
         },
         {
@@ -247,6 +254,7 @@ const parts = {
         },
         'biker helmet',
         'hat stack',
+        'chef hat',
     ],
     accessory: [ // #44474c
         'none',
@@ -264,6 +272,7 @@ const parts = {
                 [22, 10, 1, 2],
             ],
         },
+        'glasses (alt)',
         {
             id: 'sunglasses',
             color_default: '#3851bf',
@@ -364,7 +373,7 @@ const presets = {
 
         body:       0,
         head:       0,
-        hair:       1,
+        hair:       8,
         eyes:       1,
         mouth:      1,
         nose:       1,
@@ -478,7 +487,72 @@ const presets = {
         "mouth": 1,
         "nose": 1,
         "hat": 0,
-        "accessory": 6,
+        "accessory": 7,
+        "foreground": 0
+    },
+    'Ugly Sweater Bill': {
+        "background": 13,
+        "midground": 4,
+        "body": 10,
+        "head": 0,
+        "hair": 1,
+        "eyes": 1,
+        "mouth": 1,
+        "nose": 1,
+        "hat": 0,
+        "accessory": 0,
+        "foreground": 0
+    },
+    'Business Bill': {
+        "background": 0,
+        "midground": 0,
+        "body": 11,
+        "head": 0,
+        "hair": 1,
+        "eyes": 1,
+        "mouth": 1,
+        "nose": 1,
+        "hat": 0,
+        "accessory": 0,
+        "foreground": 0
+    },
+    'Baker Bill': {
+        "background": 0,
+        "midground": 0,
+        "body": 13,
+        "head": 0,
+        "hair": 8,
+        "eyes": 1,
+        "mouth": 1,
+        "nose": 1,
+        "hat": 11,
+        "accessory": 0,
+        "foreground": 0
+    },
+    'Grandma Belle': {
+        "background": 0,
+        "midground": 0,
+        "body": 14,
+        "head": 1,
+        "hair": 9,
+        "eyes": 2,
+        "mouth": 2,
+        "nose": 1,
+        "hat": 0,
+        "accessory": 3,
+        "foreground": 0
+    },
+    'Safety Greg': {
+        "background": 0,
+        "midground": 0,
+        "body": 12,
+        "head": 2,
+        "hair": 4,
+        "eyes": 3,
+        "mouth": 3,
+        "nose": 1,
+        "hat": 3,
+        "accessory": 0,
         "foreground": 0
     },
 }

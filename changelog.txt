@@ -1,3 +1,16 @@
+v10
+- Fixed the randomize option not updating which parts appear to be selected
+- Added favicon, fixed footer padding
+- Fixed Bill preset having the wrong hair
+- Fixed Charles' eyes not recoloring the correct pixels
+- New presets: Ugly Sweater Bill, Business Bill, Baker Bill, Grandma Belle, Safety Greg
+- New parts:
+    Background: Cloudless
+    Hair: Belle (White)
+    Body: Ugly Sweater, Blue Suit, High Vis, Chef, Sweater
+    Hat: Chef hat
+    Accessory: Glasses (alt)
+
 v9
 - Fixed Greg preset not having his midground
 - Added new presets: Fancy Bill, Biker Bill, Dollar Bill

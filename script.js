@@ -141,14 +141,14 @@ function resetCustom(type, option='color') {
 }
 
 /** Equip part */
-function equip(type, num) {
-    console.log(type, num);
+function equip(type, num, draw=true, equip=true) {
+    // console.log(type, num);
     if(user.part[type] == num) return;
-    user.part[type] = num;
+    if(equip) user.part[type] = num;
     document.querySelectorAll(`.part_${type}`).forEach(element => element.classList.remove('active'));
-    console.log(`part_${type}_${itemID(parts[type][num])}`);
+    // console.log(`part_${type}_${itemID(parts[type][num])}`);
     dom(`part_${type}_${itemID(parts[type][num])}`)?.classList.add('active');
-    fullDraw();
+    if(draw) fullDraw();
 }
 
 /** Draw all selected */
@@ -286,6 +286,7 @@ function tab(choice, state=true) {
 /** Export image */
 function exportImage() {
     let image = canvas.toDataURL('image/png'); // Create image
+    console.log(image);
 
     let link = document.createElement("a");
     link.setAttribute("href", image);
@@ -297,25 +298,33 @@ function exportImage() {
 
 /** Randomize character */
 function randomize() {
-    for(let i = 0; i < keys.length; i++) {
+    for(i in keys) {
         let type = keys[i];
         let list = parts[type];
         let random = Math.ceil(Math.random() * (list.length-1));
         if(type == 'foreground' && Math.ceil(Math.random() * 100) <= 80) random = 0;
-        user.part[type] = random;
+        equip(type, random, false);
     }
     fullDraw();
 }
 
 /** Set preset */
 function setPreset(preset) {
-    // if(!window.confirm("Your character will be lost. Continue?")) {
-    //     select_preset.value = 'custom';
-    //     return;
+    // if(select_preset.value == 'custom') {
+    //     if(!window.confirm("Your character will be lost. Continue?")) {
+    //         select_preset.value = 'custom';
+    //         return;
+    //     }
+    //     console.log('eee');
     // };
 
     user.part = JSON.parse(JSON.stringify(presets[preset]));
-    fullDraw(true);
+    // for(i in keys) {
+    //     let type = keys[i];
+    //     let to = presets[preset][type];
+    //     equip(type, to, false, false);
+    // }
+    fullDraw();
 }
 
 // Debug

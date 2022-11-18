@@ -146,7 +146,7 @@ main .customize_item b { margin-right: 12px; }
 main #character_creator_footer {
     border-top: 1px solid var(--border-color);
     margin-top: 24px;
-    padding: 16px 0 24px;
+    padding: 16px 0 0;
 }
 
 /* Customize position */
