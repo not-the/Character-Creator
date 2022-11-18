@@ -1,3 +1,9 @@
+v9
+- Fixed Greg preset not having his midground
+- Added new presets: Fancy Bill, Biker Bill, Dollar Bill
+- New parts:
+    Body: Leather Jacket
+
 v8
 - Reduced the odds of getting a foreground when clicking the randomize button
 - Gave the tabs a button hover effect

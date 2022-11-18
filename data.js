@@ -96,6 +96,7 @@ const parts = {
         },
         'jokester',
         'black shirt',
+        'leather jacket',
     ],
     head: [
         'bill',
@@ -387,7 +388,7 @@ const presets = {
     },
     'Greg': {
         background: 0,
-        midground:  0,
+        midground:  1,
 
         body:       2,
         head:       2,
@@ -440,5 +441,44 @@ const presets = {
         hat:        7,
         accessory:  1,
         foreground: 0,
-    }
+    },
+    'Fancy Bill': {
+        "background": 0,
+        "midground": 0,
+        "body": 6,
+        "head": 0,
+        "hair": 1,
+        "eyes": 1,
+        "mouth": 1,
+        "nose": 1,
+        "hat": 8,
+        "accessory": 0,
+        "foreground": 0
+    },
+    'Biker Bill': {
+        "background": 1,
+        "midground": 0,
+        "body": 9,
+        "head": 0,
+        "hair": 1,
+        "eyes": 1,
+        "mouth": 1,
+        "nose": 1,
+        "hat": 9,
+        "accessory": 0,
+        "foreground": 0
+    },
+    'Dollar Bill': {
+        "background": 9,
+        "midground": 0,
+        "body": 9,
+        "head": 0,
+        "hair": 2,
+        "eyes": 1,
+        "mouth": 1,
+        "nose": 1,
+        "hat": 0,
+        "accessory": 6,
+        "foreground": 0
+    },
 }

@@ -348,7 +348,7 @@ document.addEventListener('keydown', event => {
     // Arrow key positioning
     if(
         key == 'ArrowUp' || key == 'ArrowRight' || key == 'ArrowDown' || key == 'ArrowLeft'
-        && document.activeElement != 'select' && user.last_edited != false
+        && document.activeElement.tagName != 'select' && user.last_edited != false
     ) {
         event.preventDefault();
         try {
