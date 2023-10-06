@@ -64,7 +64,7 @@ function populate(type) {
         if(item.color_default == undefined) icons = '';
         html +=
         `
-        <figure class="part part_${type} ${user.part[type] == i ? 'active' : ''}" id="part_${type}_${name}" onclick="equip('${type}', ${i})">
+        <figure class="part part_${type} ${user.part[type] == i ? 'active' : ''}" id="part_${type}_${name}" onclick="equip('${type}', ${i})" role="button" tabindex="0">
             <img src="${getSRC(type, name)}" alt="${name}" class="part_img">
             <figcaption>${capitalizeFL(name)}</figcaption>
             ${icons}
