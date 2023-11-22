@@ -350,7 +350,6 @@ function canvasClick(event) {
 }
 
 // Keyboard shortcuts
-// Keyboard shortcuts
 document.addEventListener('keydown', event => {
     let key = event.key;
 

@@ -1,4 +1,8 @@
-v10
+v11   Nov 21, 2023
+- Fixed extra padding below footer depending on what tab you had open
+- Updated nav bar
+
+v10   Nov 18, 2022
 - Fixed the randomize option not updating which parts appear to be selected
 - Added favicon, fixed footer padding
 - Fixed Bill preset having the wrong hair
@@ -11,21 +15,21 @@ v10
     Hat: Chef hat
     Accessory: Glasses (alt)
 
-v9
+v9   Nov 18, 2022
 - Fixed Greg preset not having his midground
 - Added new presets: Fancy Bill, Biker Bill, Dollar Bill
 - New parts:
     Body: Leather Jacket
 
-v8
+v8   Nov 10, 2022
 - Reduced the odds of getting a foreground when clicking the randomize button
 - Gave the tabs a button hover effect
 
-v7
+v7   Nov 10, 2022
 - Removed redundant CSS
 - Hats is no longer plural
 
-v6
+v6   Oct 11, 2022
 - Arrow keys will now reposition the last element you edited
 - Randomize button
 - Preset dropdown
@@ -37,7 +41,7 @@ v6
     Hats: Charles XL, Top Hat
     Accessories: Bow tie
 
-v5
+v5   Oct 11, 2022
 - Hats and hair are now separate
 - Added a View on Github button
 - Fixed rapid taps on position buttons zooming the page on mobile
@@ -51,16 +55,16 @@ v5
     1 new hat: Hat stack
     2 new accessories: Glasses, Dollar necklace
 
-v4
+v4   Oct 8, 2022
 - Added positioning options for eyes, nose, mouth, and accessories
 - Fixed the width of the parts panel changing sometimes
 - No more floating heads, bodies of different heights will now move other elements to match
 - Added 4 new mouths
 
-v3
+v3   Oct 8, 2022
 - Complete CSS overhaul, now matches rest of the website
 
-v2
+v2   Oct 7, 2022
 - Added a "none" option to the following part types: midground, eyes, mouth, nose, accesory
 - New "Foreground" part type
 - New parts:
@@ -82,7 +86,7 @@ v2
 - Fixed the selected part not appearing as such on page load
 - Fixed parts not wrapping when larger than the container
 
-v1
+v1   Oct 7, 2022
 - Fixed an issue where the canvas would flicker when a part is equipped
 - Added a bunch of parts and seperated eyes, nose, mouth, and hat from the heads
 - Number keys let you change tabs
