@@ -4,11 +4,13 @@ button:not(.small_button) img,
     margin-right: 3px;
 }
 
+:root {
+    --container-width: 985px;
+}
+
 header { margin-top: -36px; }
 main figure img { cursor: unset; }
 main button { touch-action: manipulation; }
-
-.container { max-width: 940px; }
 
 /* Universal */
 main * { image-rendering: pixelated; }
@@ -23,9 +25,9 @@ main figure {
     margin: 0;
     padding: 0;
 }
-header h2.title_start {
+/* header h2.title_start {
     color: gray;
-}
+} */
 main input[type="color"] {
     width: 48px;
     height: 48px;

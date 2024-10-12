@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>notkal - Character Creator</title>
-    <link rel="icon" type="image/x-icon" href="https://www.notkal.com/assets/icon.png">
+    <link rel="icon" type="image/x-icon" href="https://notkal.com/assets/icon.png">
 
     <!-- Visual -->
-    <link rel="stylesheet" href="https://www.notkal.com/index.css">
-    <link rel="stylesheet" href="https://www.notkal.com/projects/project.css">
-    <meta name="theme-color" content="#171718"/>
+    <link rel="stylesheet" href="https://notkal.com/css/main.css">
+    <link rel="stylesheet" href="https://notkal.com/css/project.css">
+    <meta name="theme-color" content="#171718" />
 
     <!-- Meta -->
-    <meta property="og:url" content="https://www.notkal.com/Character-Creator/">
+    <meta property="og:url" content="https://notkal.com/Character-Creator/">
     <meta property="og:title" content="notkal - Character Creator">
     <!-- <meta property="og:description" content="undefined"> -->
     <!-- <meta property="og:image" content=""> -->
@@ -31,34 +32,29 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <!---------- Navigation ---------->
     <nav id="nav" class="overlay_element flex nav_transparent">
-        <!-- Menu button -->
-        <div role="button" tabindex="0" id="menu_button" class="nav_button">
+        <div role="button" tabindex="0" id="menu_button" class="nav_button" data-svelte-h="svelte-1kqdazx">
             <img src="/assets/icon/hamburger.svg" alt="Menu" id="menu_button_icon" class="icon button_icon">
         </div>
-
-        <!-- Page name -->
-        <p class="nav_item page_title">notkal</p>
-
+        <p class="nav_item page_title" data-svelte-h="svelte-1pjzyxz">notkal</p>
         <div class="flex" id="hamburger_menu">
-            <!-- Nav items -->
             <div id="nav_list" class="flex">
-                <a href="/" class="nav_item">Home</a>
-                <!-- <a href="/#portfolio" class="nav_item" onclick="toggleMenu()">Portfolio</a> -->
-                <a href="/#projects" class="nav_item" onclick="toggleMenu()">Projects</a>
-                <a href="/#contact" class="nav_item" onclick="toggleMenu()">Contact</a>
-                <!-- <a href="/posts" class="nav_item">Posts</a>  -->
-                <a href="/about" class="nav_item">About</a> 
+                <a class="nav_item" href="/" data-active="true">Home</a>
+                <a class="nav_item" href="/projects">Projects</a>
+                <a class="nav_item" href="/posts">Blog</a>
+                <a class="nav_item" href="/about">About</a>
             </div>
-
-            <!-- Additional buttons -->
-            <div class="nav_item nav_right flex">
+            <div class="nav_item nav_right flex" data-svelte-h="svelte-1v3b75t">
                 <div role="button" tabindex="0" id="search_button" class="nav_button">
-                    <img src="/assets/icon/search_FILL0_wght600_GRAD0_opsz24.svg" alt="Search" id="search_button" class="icon button_icon" style="transform: scale(1.3, 1.3) translateY(1px);">
+                    <img src="/assets/icon/search_FILL0_wght600_GRAD0_opsz24.svg" alt="Search" id="search_button"
+                        class="icon button_icon" style="transform: scale(1.3, 1.3) translateY(1px);">
                 </div>
                 <a href="https://github.com/not-the" rel="noreferrer" title="Github">
                     <div class="nav_button">
@@ -75,22 +71,25 @@
     <!-- Header -->
     <header>
         <!-- Banner image -->
-        <div id="banner" class="banner" style="background-image: url(https://www.notkal.com/assets/banner/gradient_2.png)"></div>
+        <div id="banner" class="banner" style="background-image: url(https://notkal.com/assets/banner/gradient_2.png)">
+        </div>
 
         <!-- Title -->
         <div class="title_section container flex">
-            <div>
-                <h2 class="title_start">Crazy Carl's Carefully Constructed Carrot Clicker</h2>
-                <h1>Character Creator</h1>
+            <div class="title_left">
+                <div class="blog_title_container">
+                    <h1>Character Creator</h1>
+                </div>
                 <p id="path" class="secondary_text gray">
-                    <a href="https://www.notkal.com/">notkal</a> / <a href="./">Character Creator</a>
+                    <a href="/">notkal</a> / <a href="./">Character Creator</a>
                 </p>
             </div>
             <div class="title_buttons flex">
                 <!-- Github -->
-                <a href="https://github.com/not-the/Character-Creator" class="label_github" target="_blank" rel="noreferrer">
+                <a href="https://github.com/not-the/Character-Creator" class="label_github" target="_blank"
+                    rel="noreferrer">
                     <div class="button bold" style="min-width: unset;">
-                        <img src="https://www.notkal.com/assets/icon/github.svg" alt="View on Github" class="button_icon">
+                        <img src="https://notkal.com/assets/icon/github.svg" alt="View on Github" class="button_icon">
                         <p>Github</p>
                         <div class="button_shade"></div>
                     </div>
@@ -98,144 +97,175 @@
             </div>
         </div>
     </header>
-    
+
 
     <!---------- Main ---------->
     <main id="main" class="container">
-        <div class="cc_flexbox flex">
-            <!-- Preview -->
-            <div class="preview_pane">
-                <figure>
-                    <canvas id="canvas" height="320" width="320" onclick="canvasClick(event)"></canvas>
-                    <figcaption>320x320</figcaption>
-                </figure>
-                <button id="cc_save_image_button" onclick="exportImage()" class="button">
-                    <img src="./assets/download.svg" alt="" class="button_icon">
-                    <p>Save Image</p>
-                    <div class="button_shade"></div>
-                </button>
-                <h4 style="margin-bottom: 6px;">Options</h4>
-                <div class="flex">
-                    <button onclick="randomize()" class="button">
-                        <p>Randomize</p>
+        <div class="body_column">
+            <div class="cc_flexbox flex">
+                <!-- Preview -->
+                <div class="preview_pane">
+                    <figure>
+                        <canvas id="canvas" height="320" width="320" onclick="canvasClick(event)"></canvas>
+                        <figcaption>320x320</figcaption>
+                    </figure>
+                    <button id="cc_save_image_button" onclick="exportImage()" class="button">
+                        <img src="./assets/download.svg" alt="" class="button_icon">
+                        <p>Save Image</p>
                         <div class="button_shade"></div>
                     </button>
-                    <select name="select_preset" id="select_preset" style="flex: 2; text-align: left; margin-left: 6px;">
-                        <option value="custom" selected disabled>Choose a preset</option>
-                        <option value="Bill">Bill</option>
-                        <option value="Belle">Belle</option>
-                        <option value="Greg">Greg</option>
-                        <option value="Charles">Charles</option>
-                        <option value="Carl">Carl</option>
-                        <option value="Jared">Jared</option>
-                        <option value="null" disabled>--------------------</option>
-                        <option value="Fancy Bill">Fancy Bill</option>
-                        <option value="Biker Bill">Biker Bill</option>
-                        <option value="Dollar Bill">Dollar Bill</option>
-                        <option value="Ugly Sweater Bill">Ugly Sweater Bill</option>
-                        <option value="Business Bill">Business Bill</option>
-                        <option value="Baker Bill">Baker Bill</option>
-                        <option value="Grandma Belle">Grandma Belle </option>
-                        <option value="Safety Greg">Safety Greg</option>
-                    </select>
+                    <h4 style="margin-bottom: 6px;">Options</h4>
+                    <div class="flex">
+                        <button onclick="randomize()" class="button">
+                            <p>Randomize</p>
+                            <div class="button_shade"></div>
+                        </button>
+                        <select name="select_preset" id="select_preset"
+                            style="flex: 2; text-align: left; margin-left: 6px;">
+                            <option value="custom" selected disabled>Choose a preset</option>
+                            <option value="Bill">Bill</option>
+                            <option value="Belle">Belle</option>
+                            <option value="Greg">Greg</option>
+                            <option value="Charles">Charles</option>
+                            <option value="Carl">Carl</option>
+                            <option value="Jared">Jared</option>
+                            <option value="null" disabled>--------------------</option>
+                            <option value="Fancy Bill">Fancy Bill</option>
+                            <option value="Biker Bill">Biker Bill</option>
+                            <option value="Dollar Bill">Dollar Bill</option>
+                            <option value="Ugly Sweater Bill">Ugly Sweater Bill</option>
+                            <option value="Business Bill">Business Bill</option>
+                            <option value="Baker Bill">Baker Bill</option>
+                            <option value="Grandma Belle">Grandma Belle </option>
+                            <option value="Safety Greg">Safety Greg</option>
+                        </select>
+                    </div>
+
                 </div>
 
+
+
+                <!-- Parts -->
+                <div class="customize_pane">
+                    <div class="tab_container flex">
+                        <button class="tab button button_blue active_tab" id="tab_background"
+                            onclick="tab('background')">
+                            <p>Background</p>
+                            <div class="button_shade"></div>
+                        </button>
+                        <button class="tab button button_blue" id="tab_body" onclick="tab('body')">
+                            <p>Body</p>
+                            <div class="button_shade"></div>
+                        </button>
+                        <button class="tab button button_blue" id="tab_face" onclick="tab('face')">
+                            <p>Face</p>
+                            <div class="button_shade"></div>
+                        </button>
+                        <button class="tab button button_blue" id="tab_extra" onclick="tab('extra')">
+                            <p>Extra</p>
+                            <div class="button_shade"></div>
+                        </button>
+                    </div>
+                    <div class="content_container">
+
+                        <div id="content_background" class="tab_content active_tab">
+                            <h4>Background</h4>
+                            <div id="parts_background">Background</div>
+                            <h4>Midground</h4>
+                            <div id="parts_midground">Midground</div>
+                        </div>
+
+                        <div id="content_body" class="tab_content">
+                            <h4>Hair</h4>
+                            <div id="parts_hair">Hair</div>
+                            <h4>Head</h4>
+                            <div id="parts_head">Head</div>
+                            <h4>Body</h4>
+                            <div id="parts_body">Body</div>
+                        </div>
+
+                        <div id="content_face" class="tab_content">
+                            <h4>Eyes</h4>
+                            <div id="parts_eyes">Eyes</div>
+                            <h4>Nose</h4>
+                            <div id="parts_nose">Nose</div>
+                            <h4>Mouth</h4>
+                            <div id="parts_mouth">Mouth</div>
+                        </div>
+
+                        <div id="content_extra" class="tab_content">
+                            <h4>Hat</h4>
+                            <div id="parts_hat">Hat</div>
+                            <h4>Accessory</h4>
+                            <div id="parts_accessory">Accessory</div>
+                            <h4>Foreground</h4>
+                            <div id="parts_foreground">Foreground</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <footer id="character_creator_footer" class="container">
+                <p>
+                    <i class="secondary_text">
+                        Crazy Carl's Carefully Constructed Carrot Clicker Character Creator
+                    </i>
+                </p>
+                <br />
 
-
-            <!-- Parts -->
-            <div class="customize_pane">
-                <div class="tab_container flex">
-                    <button class="tab button button_blue active_tab" id="tab_background" onclick="tab('background')">
-                        <p>Background</p>
-                        <div class="button_shade"></div>
-                    </button>
-                    <button class="tab button button_blue" id="tab_body" onclick="tab('body')">
-                        <p>Body</p>
-                        <div class="button_shade"></div>
-                    </button>
-                    <button class="tab button button_blue" id="tab_face" onclick="tab('face')">
-                        <p>Face</p>
-                        <div class="button_shade"></div>
-                    </button>
-                    <button class="tab button button_blue" id="tab_extra" onclick="tab('extra')">
-                        <p>Extra</p>
-                        <div class="button_shade"></div>
-                    </button>
-                </div>
-                <div class="content_container">
-
-                    <div id="content_background" class="tab_content active_tab">
-                        <h4>Background</h4>
-                        <div id="parts_background">Background</div>
-                        <h4>Midground</h4>
-                        <div id="parts_midground">Midground</div>
-                    </div>
-
-                    <div id="content_body" class="tab_content">
-                        <h4>Hair</h4>
-                        <div id="parts_hair">Hair</div>
-                        <h4>Head</h4>
-                        <div id="parts_head">Head</div>
-                        <h4>Body</h4>
-                        <div id="parts_body">Body</div>
-                    </div>
-
-                    <div id="content_face" class="tab_content">
-                        <h4>Eyes</h4>
-                        <div id="parts_eyes">Eyes</div>
-                        <h4>Nose</h4>
-                        <div id="parts_nose">Nose</div>
-                        <h4>Mouth</h4>
-                        <div id="parts_mouth">Mouth</div>
-                    </div>
-
-                    <div id="content_extra" class="tab_content">
-                        <h4>Hat</h4>
-                        <div id="parts_hat">Hat</div>
-                        <h4>Accessory</h4>
-                        <div id="parts_accessory">Accessory</div>
-                        <h4>Foreground</h4>
-                        <div id="parts_foreground">Foreground</div>
-                    </div>
-                </div>
-            </div>
+                <p>
+                    <b>Credits:</b><br />
+                    Artwork by <a href="https://notkal.com/">not-the</a><br />
+                    Original character designs by <a href="https://github.com/JJCVIP">JJCVIP</a><br />
+                    <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.dsvg"
+                        target="_blank" rel="noopener noreferrer">Palette icon</a> made by <a
+                        href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.svg"
+                        target="_blank" rel="noopener noreferrer">Scott de Jonge</a>, <a
+                        href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener noreferrer">CC
+                        BY 3.0</a>, via Wikimedia Commons
+                <div><a href="https://www.onlinewebfonts.com/icon/71049">Download Icon</a> from <a
+                        href="http://www.onlinewebfonts.com/icon">Icon Fonts</a>, CC BY 3.0</div>
+                </p>
+            </footer>
         </div>
-    
-        <footer id="character_creator_footer" class="container">
-            <b>Credits:</b><br/>
-            Artwork by <a href="https://www.notkal.com/">not-the</a><br/>
-            Original character designs by <a href="https://github.com/JJCVIP">JJCVIP</a><br/>
-            <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.dsvg" target="_blank" rel="noopener noreferrer">Palette icon</a> made by <a href="https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_art-gallery.svg" target="_blank" rel="noopener noreferrer">Scott de Jonge</a>, <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>, via Wikimedia Commons
-            <div><a href="https://www.onlinewebfonts.com/icon/71049">Download Icon</a> from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a>, CC BY 3.0</div>
-        </footer>
     </main>
-    
+
 
     <!---------- Footer ---------->
     <footer id="footer" class="flex">
         <div class="container">
-            <div class="icons">
-                <div class="ee_icon"><input type="color" name="easter_egg" id="easter_egg" value="#51a2ff" title="Click me!"></div>
-                <div>
-                    <a href="/">Home</a> | 
-                    <a href="/#projects">Projects</a> | 
-                    <a href="/#contact">Contact</a> | 
-                    <a href="/posts">Posts</a> |
-                    <a href="/about">About</a>
+            <nav>
+                <div class="icons">
+                    <div class="ee_icon" data-svelte-h="svelte-16to33j"><input type="color" name="easter_egg"
+                            id="easter_egg" value="#51a2ff" title="Click me!"></div>
+                    <div class="breadcrumbs footer_breadcrumbs">
+                        <span class="breadcrumb_separator">/</span>
+                        <a href="/Character-Creator/" class="secondary_text hover_emphasize">Character Creator</a>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Attribution -->
-            <a href="/about/#copyright" class="emphasize bold hover_underline">Image attribution</a> | 
-            <a href="/about/#privacy" class="emphasize bold hover_underline">Privacy</a>
-            <br/><br/>
-
-            <!-- Copyright -->
-            <p class="emphasize">Ⓒ 2023 notkal.com</p>
-            <br/>
-            <a role="button" tabindex="0" onclick="toTop()">Return to top</a>
+                <div class="footer_columns_container" data-svelte-h="svelte-pdadl3">
+                    <div>
+                        <p><strong class="emphasize">Navigation</strong></p>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/projects">Projects</a></li>
+                            <li><a href="/posts">Blog</a></li>
+                            <li><a href="/about">About</a></li>
+                        </ul>
+                    </div>
+                    <div><strong class="emphasize">Info</strong>
+                        <ul>
+                            <li><a href="/#contact">Contact</a></li>
+                            <li><a href="/about/#privacy">Privacy</a></li>
+                            <li><a href="/about/#copyright">Attribution</a></li>
+                        </ul>
+                    </div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </nav> <br>
+            <p class="emphasize" data-svelte-h="svelte-1q9iyl5">Ⓒ 2024 notkal.com</p> <br> <a href="javascript:;"
+                role="button" tabindex="0" onclick="toTop()" data-svelte-h="svelte-nxy1b2">Return to top</a>
         </div>
     </footer>
     <div id="footer_gradient"></div>
@@ -245,10 +275,11 @@
     <div id="backdrop"></div>
 
     <!-- JS -->
-    <script src="https://www.notkal.com/index.js"></script>
+    <script src="https://notkal.com/js/index.js"></script>
 
     <!-- Project -->
     <script src="./data.js"></script>
     <script src="./script.js"></script>
 </body>
+
 </html>
